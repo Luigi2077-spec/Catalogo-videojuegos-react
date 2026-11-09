@@ -33,11 +33,6 @@ function Header() {
         >
           Explora los títulos más destacados de la industria
         </p>
-         <img 
-          src="https://i.pinimg.com/originals/ce/c4/ba/cec4ba2185abfb83024b4c0fa4cb8097.gif" 
-          alt="Logo animado Gaming Hub" 
-          style={{ width: '80px', marginBottom: '20px' }} 
-        />
       </div>
     </header>
   );

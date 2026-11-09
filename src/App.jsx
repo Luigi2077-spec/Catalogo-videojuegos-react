@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Header from './components/Header';
 import ListaItems from './components/ListaItems';
 import DetalleItem from './components/DetalleItem';
@@ -38,24 +38,22 @@ const JUEGOS_DATA = [
   }
 ];
 
-function App() {
-  const [juegoSeleccionado, setJuegoSeleccionado] = useState(null);
-
-  useEffect(() => {
-    try {
-      const juegoGuardado = localStorage.getItem('ultimoJuegoSeleccionado');
-      if (juegoGuardado) {
-        const juegoParsed = JSON.parse(juegoGuardado);
-        // Emparejamos con los datos locales para asegurar que la ruta de la imagen funcione perfectamente
-        const juegoActualizado = JUEGOS_DATA.find(j => j.id === juegoParsed.id);
-        setJuegoSeleccionado(juegoActualizado || JUEGOS_DATA[0]);
-      } else {
-        setJuegoSeleccionado(JUEGOS_DATA[0]);
-      }
-    } catch (error) {
-      console.error("Error al leer desde localStorage:", error);
+function obtenerJuegoInicial() {
+  try {
+    const juegoGuardado = localStorage.getItem('ultimoJuegoSeleccionado');
+    if (juegoGuardado) {
+      const juegoParsed = JSON.parse(juegoGuardado);
+      return JUEGOS_DATA.find((juego) => juego.id === juegoParsed?.id) || JUEGOS_DATA[0];
     }
-  }, []);
+  } catch (error) {
+    console.error('Error al leer desde localStorage:', error);
+  }
+
+  return JUEGOS_DATA[0];
+}
+
+function App() {
+  const [juegoSeleccionado, setJuegoSeleccionado] = useState(obtenerJuegoInicial);
 
   const handleSeleccionarJuego = (juego) => {
     setJuegoSeleccionado(juego);
