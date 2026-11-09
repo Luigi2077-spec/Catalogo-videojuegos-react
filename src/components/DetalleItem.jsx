@@ -34,7 +34,7 @@ function DetalleItem({ juego }) {
       </div>
       <div className="card-footer bg-light border-0 py-2 px-4 text-end">
         <small className="text-muted">
-          <i className="bi bi-cloud-check-fill text-success me-1"></i> Guardado en LocalStorage
+          <i className="bi bi-hdd-fill text-success me-1"></i> La selección se guarda en este navegador al elegir un juego.
         </small>
       </div>
     </aside>
